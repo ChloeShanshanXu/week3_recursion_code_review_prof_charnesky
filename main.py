@@ -34,26 +34,26 @@ if __name__ =='__main__':
 def iterative_binary_search(ls,num_to_find):
     start_index = 0
     end_index=len(ls)-1
-    while start_index <= end_index:
+    while start_index < end_index:
         mid = (start_index + end_index)//2
-        if ls[mid]== num_to_find:
-            return mid
-            quit
-        if ls[mid]> num_to_find:
+        if ls[mid] < num_to_find:
+            start_index=mid+1
+        if ls[mid] > num_to_find:
             end_index=mid-1
-        else:
-            start_index = mid+1
+    return start_index
 
-
-
-
-
+#    while start_index <= end_index:
+ #       mid = (start_index + end_index)//2
+  #      if ls[mid]== num_to_find:
+   #         return mid
+    #        quit
+     #   if ls[mid]> num_to_find:
+      #      end_index=mid-1
+       # else:
+        #    start_index = mid+1
 
 if __name__ =='__main__':
     numbers=[2,54,23,93,7,43, 90, 203,4,8]
     numbers.sort()
     print(iterative_binary_search(numbers, 54))
     print("number is at " + str(iterative_binary_search(numbers, 54)) + " place of the list")
-
-    for value in numbers:
-        print("the index of {} in the list is:{}".format(value, binary_search(numbers, value)))
