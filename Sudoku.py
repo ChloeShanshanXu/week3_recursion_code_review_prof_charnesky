@@ -6,7 +6,54 @@ class SudokuSolver:
         self.column_index = 0
 
     def __str__(self):
-        result = ""
+        #result = ""
+        #for row in self.board:
+        #    result += str(row) + "\n"
+        #return result
+        return "\n".join(str(row) for row in self.board) #remember this expression Chloe
+
+    def solve(self):
+        if self._is_unsolved():
+            if self.board[self.row_index][self.column_index]==" ":
+                for number in range (1,10):
+                    number=str(number)
+                    if self._can_place(number, self.row_index, self.column_index):
+                        self.board[self.row_index][self.column_index]=number
+                        self._advance_row_column()
+                        self.solve()
+                        if self._is_unsolved():
+                            self.column_index-=1
+                            if self.column_index <0:
+                                self.column_index=8
+                                self.row_index-=1
+                            self.board[self.row_index][self.column_index]=" "
+            else:
+                self._advance_row_column()
+
+    def _advance_row_column(self):
+        self.column_index+=1
+        if self.column_index>8:
+            self.column_index=0
+            self.row_index+=1
+
+    def _can_place_in_row(self, number, row_index):
+        return row_index < len(self.board) and number not in self.board[row_index]
+    def _can_place_in_column(self, number, column_index):
         for row in self.board:
-            result += str(row) + "\n"
-        return result
+            if number = row[column_index]:
+                return False
+        return True
+    def _can_place_3by3(self, number, row_index, column_index):
+        starting_row = row_index//3*3
+        starting_column = column_index//3*3
+        for row_index in range (starting_row, starting_row+3):
+            for column_index in range (column_index, column_index+3):
+                if self.board[row_index][column_index]==number:
+                    return False
+        return True
+    def _can_place(self, number, row_index, column_index):
+        return self._can_place_in_row(number, row_index) and \
+               self._can_place_in_column(number, column_index) and \
+               self._can_place_in_3by3(number, row_index, column_index)
+
+
