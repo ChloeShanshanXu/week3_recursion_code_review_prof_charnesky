@@ -18,14 +18,26 @@ class Ship:
         self._current_health = self._max_health
 
     def _attack(self, target):
-        if target _is_in_range:
+        if self._is_in_range:
             target._current_health -= self._attack_power
         else:
             raise ValueError("Ship out of range")
 
-    def _is_in_range:
+    def _is_in_range(self, target):
         dist = sqrt((self._x_location - target._x_location) ^ 2 + (self._y_location - target._y_location) ^ 2)
         if dist > range:
             return False
         else:
             return True
+
+    def get_type(self):
+        return type(self)
+
+    def get_x(self):
+        return self._x_location
+
+    def get_y(self):
+        return self._y_location
+
+    def get_alignment(self):
+        return self._alignment
