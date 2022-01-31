@@ -18,10 +18,11 @@ class Ship:
         self._current_health = self._max_health
 
     def _attack(self, target):
-        if self._is_in_range:
-            target._current_health -= self._attack_power
-        else:
-            raise ValueError("Ship out of range")
+        if (self._alignment != target._alignment) or self._alignment == Alignment.chaotic:
+            if self._is_in_range:
+                target._current_health -= self._attack_power
+            else:
+                raise ValueError("Ship out of range")
 
     def _is_in_range(self, target):
         dist = sqrt((self._x_location - target._x_location) ^ 2 + (self._y_location - target._y_location) ^ 2)
@@ -71,6 +72,6 @@ class Ship:
     def _assess_damage(self, amount):
         self._current_health -= amount
         if self._current_health < 0:
-            self._current_health=0_
+            self._current_health = 0
 
 get_torpedoes
