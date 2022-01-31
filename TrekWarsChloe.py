@@ -41,3 +41,10 @@ class Ship:
 
     def get_alignment(self):
         return self._alignment
+
+    def status(self):
+        return "{}type:{}health:{}location:({},{})".format(self.name \n, type(self) \n,self._current_health \n, self._x_location, self._y_location)
+        if self.get_type = "Battleship":
+            return "torpedoes: " + self.get_torpedoes
+
+ get_torpedoes
