@@ -21,6 +21,9 @@ class Ship:
         if (self._alignment != target._alignment) or self._alignment == Alignment.chaotic:
             if self._is_in_range:
                 target._current_health -= self._attack_power
+                if target._current_health < 0:
+                    target._current_health = 0
+                    print ("Target K.O.")
             else:
                 raise ValueError("Ship out of range")
 
@@ -46,12 +49,9 @@ class Ship:
     def status(self):
         return "{}\n type:{}\n health:{}\n location:({},{})".format(self.name, \
         type(self),self._current_health, self._x_location, self._y_location)
-        if self.get_type == "Battleship":
-            return "torpedoes: " + self.get_torpedoes
 
-    def _move(self):
-        move_in_x = 1
-        move_in_y = 1
+
+    def _move(self, move_in_x=1, move_in_y=1):
         self._move_in_x
         self._move_in_y
         if self._current_health < self._max_health:
@@ -74,4 +74,30 @@ class Ship:
         if self._current_health < 0:
             self._current_health = 0
 
-get_torpedoes
+
+class Battleship(Ship):
+
+    def __init__(self, name, x, y, alignment,max_health, range, attack_power, torpedoes):
+        max_health = 100
+        range = 10
+        attack_power = 10
+        super().__init__(self, name, x, y, alignment,max_health, range, attack_power)
+        self._torpedoes=torpedoes
+
+    def get_torpedoes(self):
+        return self._torpedoes
+
+    def _move(self):
+        move_in_x = -1
+        move_in_y = -1
+        super()._move(move_in_x, move_in_y)
+
+    def _attack(self, target):
+        if self._torpedoes > 0:
+            target._current_health -= 10
+            self._torpedoes -= 1
+        super()._attack()
+
+    def _status(self):
+        super()._status
+        print("torpedoes:" + str(self.get_torpedoes()))
