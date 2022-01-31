@@ -43,8 +43,34 @@ class Ship:
         return self._alignment
 
     def status(self):
-        return "{}type:{}health:{}location:({},{})".format(self.name \n, type(self) \n,self._current_health \n, self._x_location, self._y_location)
-        if self.get_type = "Battleship":
+        return "{}\n type:{}\n health:{}\n location:({},{})".format(self.name, \
+        type(self),self._current_health, self._x_location, self._y_location)
+        if self.get_type == "Battleship":
             return "torpedoes: " + self.get_torpedoes
 
- get_torpedoes
+    def _move(self):
+        move_in_x = 1
+        move_in_y = 1
+        self._move_in_x
+        self._move_in_y
+        if self._current_health < self._max_health:
+            self._current_health += 1
+
+    def _move_in_x(self, move_in_x):
+        self._x_location += move_in_x
+
+    def _move_in_y(self, move_in_y):
+        self._y_location += move_in_y
+
+    def _change_alignment(self):
+        if self._alignment == Alignment.us:
+            self._alignment = Alignment.them
+        elif self._alignment == Alignment.them:
+            self._alignment = Alignment.us
+
+    def _assess_damage(self, amount):
+        self._current_health -= amount
+        if self._current_health < 0:
+            self._current_health=0_
+
+get_torpedoes
