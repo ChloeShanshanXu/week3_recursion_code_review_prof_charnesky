@@ -30,7 +30,7 @@ class TestAlignment(TestCase):
         # Assert
         self.assertEqual(expected_result, actual_result)
 
-    def test_Alignment_us(self):
+    def test_Alignment_chaotic(self):
         # Arrange
         at3 = Alighment.chaotic
         expected_result = 3
