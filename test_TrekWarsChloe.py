@@ -17,6 +17,18 @@ class TestAlignment(TestCase):
 class TestShip(TestCase):
 
     def test_is_in_range_true(self, target):
+        #Arrange
+        range = 100
+        my_ship = Ship("my ship", 0, 0, 1, 20, range, 10)
+        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
+        expected_result = True
+
+        #Act
+        actual_result = my_ship._is_in_range(target_ship)
+
+        #Assert
+        self.assertEqual(expected_result, actual_result)
+
     def test_is_in_range_false(self, target):
         dist = sqrt((self._x_location - target._x_location) ^ 2 + (self._y_location - target._y_location) ^ 2)
         if dist > range:
