@@ -1,12 +1,20 @@
 from unittest import TestCase
+from TrekWarsChloe import Alignment
+from TrekWarsChloe import Ship
+from TrekWarsChloe import Battleship
+from TrekWarsChloe import Cruiser
+from TrekWarsChloe import Corvette
+from TrekWarsChloe import Repair
 
-class Test(TestCase):
+class TestAlignment(TestCase):
 
     def test_alignment(self):
-        self.fail()
+        class Alignment(Enum):
+            us = 1
+            them = 2
+            chaotic = 3
 
-# test_ship(self):
-        self.fail()
+class TestShip(TestCase):
 
     def test_is_in_range_true(self, target):
     def test_is_in_range_false(self, target):
@@ -69,9 +77,7 @@ class Test(TestCase):
 
     def test_assess_damage_health_low(self, amount):
 
-
-
-# test_battleship(self):
+class TestBattleship(TestCase):
     def test_battleship_get_torpedoes(self):
         return self._torpedoes
 
@@ -94,14 +100,14 @@ class Test(TestCase):
         print("torpedoes:" + str(self.get_torpedoes()))
 
 
-# test_cruiser(self):
+class TestCruiser(TestCase):
 
     def test_cruiser_move(self):
         move_in_x = 1
         move_in_y = 2
         super()._move(move_in_x, move_in_y)
 
-# test_corvette(self):
+class TestCorvette(TestCase):
     def test_corvette_move(self):
         move_in_x = 5
         move_in_y = 5
@@ -111,7 +117,7 @@ class Test(TestCase):
         if self._alignment != target._alignment:
             target._alignment = self._alignment
 
-# test_repair(self):
+class TestRepair(TestCase):
     def test_repair_attack(self, target):
         if self._alignment == target._alignment:
             target._current_health = target._max_health
