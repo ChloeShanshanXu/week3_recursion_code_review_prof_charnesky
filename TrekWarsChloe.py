@@ -148,3 +148,4 @@ class Repair(Cruiser):
     def _attack(self, target):
         if self._alignment == target._alignment:
             target._current_health = target._max_health
+

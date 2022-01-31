@@ -120,7 +120,15 @@ class TestShip(TestCase):
         self.assertRaises(ValueError, "Ship out of range")
 
     def test_get_type(self):
-        return type(self)
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        expected_result= <class '__main__.Ship'>
+
+        # Act
+        actual_result=my_ship.get_type()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_get_x(self):
         return self._x_location
