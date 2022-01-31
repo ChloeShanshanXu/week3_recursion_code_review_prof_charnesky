@@ -23,7 +23,7 @@ class Ship:
                 target._current_health -= self._attack_power
                 if target._current_health < 0:
                     target._current_health = 0
-                    print ("Target K.O.")
+                    raise ValueError("Target K.O.")
             else:
                 raise ValueError("Ship out of range")
 
@@ -45,6 +45,9 @@ class Ship:
 
     def get_alignment(self):
         return self._alignment
+
+    def get_current_health(self):
+        return self._current_health
 
     def status(self):
         return "{}\n type:{}\n health:{}\n location:({},{})".format(self.name, \

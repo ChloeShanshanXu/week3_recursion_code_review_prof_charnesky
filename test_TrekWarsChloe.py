@@ -36,7 +36,7 @@ class TestAlignment(TestCase):
         expected_result = 3
 
         # Act
-        actual_result = Alignment.us
+        actual_result = at3
 
         # Assert
         self.assertEqual(expected_result, actual_result)
@@ -46,8 +46,8 @@ class TestShip(TestCase):
     def test_is_in_range_true(self, target):
         #Arrange
         range = 100
-        my_ship = Ship("my ship", 0, 0, 1, 20, range, 10)
-        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
+        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
         expected_result = True
 
         #Act
@@ -57,22 +57,67 @@ class TestShip(TestCase):
         self.assertEqual(expected_result, actual_result)
 
     def test_is_in_range_false(self, target):
-        dist = sqrt((self._x_location - target._x_location) ^ 2 + (self._y_location - target._y_location) ^ 2)
-        if dist > range:
-            return False
-        else:
-            return True
+        #Arrange
+        range = 1
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
+        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        expected_result = False
+
+        #Act
+        actual_result = my_ship._is_in_range(target_ship)
+
+        #Assert
+        self.assertEqual(expected_result, actual_result)
+
+    def test_get_current_health(self):
+        # Arrange
+        max_health=20
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health, range=100, attack_power=10)
+        expected_result = 20
+
+        # Act
+        actual_result = my_ship.get_current_health()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_attack_success(self, target):
-        if (self._alignment != target._alignment) or self._alignment == Alignment.chaotic:
-            if self._is_in_range:
-                target._current_health -= self._attack_power
-                if target._current_health < 0:
-                    target._current_health = 0
-                    print ("Target K.O.")
+        #Arrange
+        range = 100
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
+        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        expected_target_current_health = 10
+
+        #Act
+        my_ship._attack(target_ship)
+        actual_target_current_health = target_ship.get_current_health()
+
+        #Assert
+        self.assertEqual(expected_target_current_health, actual_target_current_health)
+
     def test_attack_success_KO(self, target):
+        #Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        target_ship._current_health = 5
+
+        #Act
+        my_ship._attack(target_ship)
+
+        #Assert
+        self.assertRaises(ValueError, "Target K.O.")
+
     def test_attack_fail(self, target):
-                raise ValueError("Ship out of range")
+        # Arrange
+        range = 1
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
+        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+
+        # Act
+        my_ship._attack(target_ship)
+
+        # Assert
+        self.assertRaises(ValueError, "Ship out of range")
 
     def test_get_type(self):
         return type(self)
