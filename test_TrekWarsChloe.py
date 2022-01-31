@@ -8,11 +8,38 @@ from TrekWarsChloe import Repair
 
 class TestAlignment(TestCase):
 
-    def test_alignment(self):
-        class Alignment(Enum):
-            us = 1
-            them = 2
-            chaotic = 3
+    def test_Alignment_us(self):
+        # Arrange
+        at1 = Alignment.us
+        expected_result = 1
+
+        # Act
+        actual_result = at1
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
+
+    def test_Alignment_them(self):
+        # Arrange
+        at2 = Alignment.them
+        expected_result = 2
+
+        # Act
+        actual_result = at2
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
+
+    def test_Alignment_us(self):
+        # Arrange
+        at3 = Alighment.chaotic
+        expected_result = 3
+
+        # Act
+        actual_result = Alignment.us
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
 class TestShip(TestCase):
 
