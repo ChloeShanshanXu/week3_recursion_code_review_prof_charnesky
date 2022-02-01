@@ -271,22 +271,52 @@ class TestShip(TestCase):
         self.assertEqual(expected_result, actual_result)
 
 class TestBattleship(TestCase):
+
     def test_battleship_get_torpedoes(self):
         return self._torpedoes
+        # Arrange
+        torpedoes = 3
+        my_battleship = Battleship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10, torpedoes)
+        expected_result = 3
+
+        # Act
+        actual_result = my_ship.get_torpedoes()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
 
     def test_battleship_move(self):
-        move_in_x = -1
-        move_in_y = -1
-        super()._move(move_in_x, move_in_y)
+        # Arrange
+        my_battleship = Battleship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10, torpedoes=3)
+        expected_x_result = -1
+        expected_y_result = -1
 
+        # Act
+        my_battleship._move()
+        actual_x_result = my_battleship.get_x()
+        actual_y_result = my_battleship.get_y()
+
+        # Assert
+        self.assertEqual(expected_x_result, actual_x_result)
+        self.assertEqual(expected_y_result, actual_y_result)
 
     def test_battleship_attack(self, target):
-        if self._torpedoes > 0:
-            target._current_health -= 10
-            self._torpedoes -= 1
-        super()._attack()
+        # Arrange
+        torpedoes = 3
+        my_battleship = Battleship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10, torpedoes)
+        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=30, range=5, attack_power=10)
+        expected_torpedoes_result = 2
+        expected_target_health = 10
 
+        # Act
+        my_battleship._attack(target_ship)
+        actual_torpedoes_result = my_battleship.get_torpedoes()
+        actual_target_health = target_ship.get_current_health()
+
+        # Assert
+        self.assertEqual(actual_torpedoes_result, expected_torpedoes_result)
+        self.assertEqual(actual_target_health, expected_target_health)
 
     def test_battleship_status(self):
         super()._status
@@ -299,6 +329,20 @@ class TestCruiser(TestCase):
         move_in_x = 1
         move_in_y = 2
         super()._move(move_in_x, move_in_y)
+        # Arrange
+        my_battleship = Cruiser(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10, torpedoes=3)
+        expected_x_result = -1
+        expected_y_result = -1
+
+        # Act
+        my_battleship._move()
+        actual_x_result = my_battleship.get_x()
+        actual_y_result = my_battleship.get_y()
+
+        # Assert
+        self.assertEqual(expected_x_result, actual_x_result)
+        self.assertEqual(expected_y_result, actual_y_result)
+
 
 class TestCorvette(TestCase):
     def test_corvette_move(self):
