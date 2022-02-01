@@ -103,12 +103,12 @@ class Battleship(Ship):
 
     def _status(self):
         super()._status
-        print("torpedoes:" + str(self.get_torpedoes()))
+        print("torpedoes: " + str(self.get_torpedoes()))
 
 
 class Cruiser(Ship):
 
-    def __init__(self, name, x, y, alignment,max_health, range, attack_power, torpedoes):
+    def __init__(self, name, x, y, alignment,max_health, range, attack_power):
         max_health = 50
         range = 50
         attack_power = 5
@@ -122,10 +122,10 @@ class Cruiser(Ship):
 
 class Corvette(Ship):
 
-    def __init__(self, name, x, y, alignment,max_health, range, attack_power, torpedoes):
+    def __init__(self, name, x, y, alignment,max_health, range):
         max_health = 20
         range = 25
-        super().__init__(self, name, x, y, alignment,max_health, range, attack_power)
+        super().__init__(self, name, x, y, alignment,max_health, range)
 
     def _move(self):
         move_in_x = 5
@@ -139,7 +139,7 @@ class Corvette(Ship):
 
 class Repair(Cruiser):
 
-    def __init__(self, name, x, y, alignment,max_health, range, attack_power, torpedoes):
+    def __init__(self, name, x, y, alignment,max_health, range, attack_power):
         max_health = 20
         range = 25
         super().__init__(self, name, x, y, alignment,max_health, range, attack_power)
