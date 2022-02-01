@@ -1,5 +1,8 @@
 from enum import Enum
 #code reference from: https://docs.python.org/3.11/howto/enum.html
+from math import sqrt
+
+
 class Alignment(Enum):
     us = 1
     them = 2
@@ -7,7 +10,7 @@ class Alignment(Enum):
 
 class Ship:
 
-    def __init__(self, name, x, y, alignment,max_health, range, attack_power):
+    def __init__(self, name, x, y, alignment, max_health, range, attack_power):
         self._name = name
         self._x_location = x
         self._y_location = y

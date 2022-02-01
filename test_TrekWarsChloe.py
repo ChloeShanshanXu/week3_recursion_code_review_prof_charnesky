@@ -11,7 +11,7 @@ class TestAlignment(TestCase):
     def test_Alignment_us(self):
         # Arrange
         at1 = Alignment.us
-        expected_result = 1
+        expected_result = "<Alignment.us: 1>"
 
         # Act
         actual_result = at1
@@ -22,7 +22,7 @@ class TestAlignment(TestCase):
     def test_Alignment_them(self):
         # Arrange
         at2 = Alignment.them
-        expected_result = 2
+        expected_result = "<Alignment.them: 2>"
 
         # Act
         actual_result = at2
@@ -33,7 +33,7 @@ class TestAlignment(TestCase):
     def test_Alignment_chaotic(self):
         # Arrange
         at3 = Alignment.chaotic
-        expected_result = 3
+        expected_result = '<Alignment.chaotic: 3>'
 
         # Act
         actual_result = at3
@@ -46,8 +46,8 @@ class TestShip(TestCase):
     def test_is_in_range_true(self, target):
         #Arrange
         range = 100
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, range, 10)
+        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
         expected_result = True
 
         #Act
@@ -59,8 +59,8 @@ class TestShip(TestCase):
     def test_is_in_range_false(self, target):
         #Arrange
         range = 1
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, range, 10)
+        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
         expected_result = False
 
         #Act
@@ -72,7 +72,7 @@ class TestShip(TestCase):
     def test_get_current_health(self):
         # Arrange
         max_health=20
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, max_health, 100, 10)
         expected_result = 20
 
         # Act
@@ -84,8 +84,8 @@ class TestShip(TestCase):
     def test_attack_success(self, target):
         #Arrange
         range = 100
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, range, 10)
+        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
         expected_target_current_health = 10
 
         #Act
@@ -97,8 +97,8 @@ class TestShip(TestCase):
 
     def test_attack_success_KO(self, target):
         #Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
+        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
         target_ship._current_health = 5
 
         #Act
@@ -110,8 +110,8 @@ class TestShip(TestCase):
     def test_attack_fail(self, target):
         # Arrange
         range = 1
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range, attack_power=10)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=20, range=5, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, range, 10)
+        target_ship = Ship("target ship", 3, 4, 2, 20, 5, 10)
 
         # Act
         my_ship._attack(target_ship)
@@ -121,8 +121,8 @@ class TestShip(TestCase):
 
     def test_get_type(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
-        expected_result= <class '__main__.Ship'>
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
+        expected_result= "<class '__main__.Ship'>"
 
         # Act
         actual_result=my_ship.get_type()
@@ -132,7 +132,7 @@ class TestShip(TestCase):
 
     def test_get_x(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         expected_result = 0
 
         # Act
@@ -143,7 +143,7 @@ class TestShip(TestCase):
 
     def test_get_y(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         expected_result = 0
 
         # Act
@@ -154,7 +154,7 @@ class TestShip(TestCase):
 
     def test_get_alignment(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         expected_result = 1
 
         # Act
@@ -165,7 +165,7 @@ class TestShip(TestCase):
 
     def test_status(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         expected_result = "my ship\ntype:<class '__main__.Ship'>\nhealth:20\nlocation:(0,0)"
 
         # Act
@@ -176,7 +176,7 @@ class TestShip(TestCase):
 
     def test_move_in_x(self, move_in_x):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         move_in_x = 3
         expected_x_location = 3
 
@@ -188,7 +188,7 @@ class TestShip(TestCase):
 
     def test_move_in_y(self, move_in_y):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         move_in_y = -3
         expected_y_location = -3
 
@@ -200,7 +200,7 @@ class TestShip(TestCase):
 
     def test_move(self, move_in_x, move_in_y):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         my_ship._current_health=10
         move_in_x = 3
         move_in_y = -3
@@ -221,8 +221,8 @@ class TestShip(TestCase):
 
     def test_change_alignment_us_to_them(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
-        expected_result = 2
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
+        expected_result = 1
 
         # Act
         my_ship._change_alignment()
@@ -233,7 +233,7 @@ class TestShip(TestCase):
 
     def test_change_alignment_them_to_us(self):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         expected_result = 1
 
         # Act
@@ -245,7 +245,7 @@ class TestShip(TestCase):
 
     def test_assess_damage(self, amount):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         amount = 5
         expected_result = 15
 
@@ -258,7 +258,7 @@ class TestShip(TestCase):
 
     def test_assess_damage_health_low(self, amount):
         # Arrange
-        my_ship = Ship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10)
+        my_ship = Ship("my ship", 0, 0, 1, 20, 100, 10)
         my_ship._current_health = 3
         amount = 5
         expected_result = 0
@@ -276,7 +276,7 @@ class TestBattleship(TestCase):
         return self._torpedoes
         # Arrange
         torpedoes = 3
-        my_battleship = Battleship(name="my battleship", x=0, y=0, alignment=2, max_health=100, range=10, attack_power=10, torpedoes)
+        my_battleship = Battleship("my battleship", 0, 0, 1, 100, 10, 10, torpedoes)
         expected_result = 3
 
         # Act
@@ -288,7 +288,7 @@ class TestBattleship(TestCase):
 
     def test_battleship_move(self):
         # Arrange
-        my_battleship = Battleship(name="my battleship", x=0, y=0, alignment=2, max_health=100, range=10, attack_power=10, torpedoes=3)
+        my_battleship = Battleship("my battleship", 0, 0, 1, 100, 10, 10, 3)
         expected_x_result = -1
         expected_y_result = -1
 
@@ -304,8 +304,8 @@ class TestBattleship(TestCase):
     def test_battleship_attack(self, target):
         # Arrange
         torpedoes = 3
-        my_battleship = Battleship(name="my battleship", x=0, y=0, alignment=2, max_health=100, range=10, attack_power=10, torpedoes)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=30, range=5, attack_power=10)
+        my_battleship = Battleship("my battleship", 0, 0, 1, 100, 10, 10, torpedoes)
+        target_ship = Ship("target ship", 3, 4, 2, 30, 5, 10)
         expected_torpedoes_result = 2
         expected_target_health = 10
 
@@ -322,7 +322,7 @@ class TestBattleship(TestCase):
         super()._status
         print("torpedoes:" + str(self.get_torpedoes()))
         # Arrange
-        my_battleship = Battleship(name="my battleship", x=0, y=0, alignment=2, max_health=100, range=10, attack_power=10, torpedoes=3)
+        my_battleship = Battleship("my battleship", 0, 0, 1, 100, 10, 10, 3)
         expected_result = "my battleship\ntype:<class '__main__.Battleship'>\nhealth:100\nlocation:(0,0)\ntorpdedoes: 3"
 
         # Act
@@ -335,7 +335,7 @@ class TestCruiser(TestCase):
 
     def test_cruiser_move(self):
         # Arrange
-        my_cruiser = Cruiser(name="my cruiser", x=0, y=0, alignment=2, max_health=50, range=50, attack_power=5)
+        my_cruiser = Cruiser("my cruiser", 0, 0, 1, 50, 50, 5)
         expected_x_result = 1
         expected_y_result = 2
 
@@ -352,7 +352,7 @@ class TestCruiser(TestCase):
 class TestCorvette(TestCase):
     def test_corvette_move(self):
         # Arrange
-        my_corvette = Corvette(name="my corvette", x=0, y=0, alignment=2, max_health=20, range=25)
+        my_corvette = Corvette("my corvette", 0, 0, 2, 20, 25)
         expected_x_result = 5
         expected_y_result = 5
 
@@ -367,8 +367,8 @@ class TestCorvette(TestCase):
 
     def test_corvette_attack(self, target):
         # Arrange
-        my_corvette = Corvette(name="my corvette", x=0, y=0, alignment=1, max_health=20, range=25)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=2, max_health=30, range=5, attack_power=10)
+        my_corvette = Corvette("my corvette", 0, 0, 2, 20, 25)
+        target_ship = Ship("target ship", 3, 4, 1, 30, 5, 10)
         expected_result = 1
 
         # Act
@@ -383,8 +383,8 @@ class TestRepair(TestCase):
         if self._alignment == target._alignment:
             target._current_health = target._max_health
         # Arrange
-        my_repair = Repair(name="my repair", x=0, y=0, alignment=1, max_health=20, range=25,attack_power=5)
-        target_ship = Ship(name="target ship", x=3, y=4, alignment=1, max_health=30, range=5, attack_power=10)
+        my_repair = Repair("my repair", 0, 0, 1, 20, 25,5)
+        target_ship = Ship("target ship", 3, 4, 1, 30, 5, 10)
         target_ship._current_health = 20
         expected_result = 30
 
