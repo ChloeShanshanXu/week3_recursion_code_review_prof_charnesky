@@ -131,29 +131,93 @@ class TestShip(TestCase):
         self.assertEqual(expected_result, actual_result)
 
     def test_get_x(self):
-        return self._x_location
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        expected_result = 0
+
+        # Act
+        actual_result=my_ship.get_x()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_get_y(self):
-        return self._y_location
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        expected_result = 0
+
+        # Act
+        actual_result=my_ship.get_y()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_get_alignment(self):
-        return self._alignment
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        expected_result = 1
+
+        # Act
+        actual_result=my_ship.get_alignment()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_status(self):
-        return "{}\n type:{}\n health:{}\n location:({},{})".format(self.name, \
-        type(self),self._current_health, self._x_location, self._y_location)
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        expected_result = "my ship\ntype:<class '__main__.Ship'>\nhealth:20\nlocation:(0,0)"
+
+        # Act
+        actual_result=my_ship.status()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_move_in_x(self, move_in_x):
-        self._x_location += move_in_x
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        move_in_x = 3
+        expected_x_location = 3
+
+        # Act
+        actual_x_location=my_ship._move_in_x(move_in_x)
+
+        # Assert
+        self.assertEqual(expected_x_location, actual_x_location)
 
     def test_move_in_y(self, move_in_y):
-        self._y_location += move_in_y
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        move_in_y = -3
+        expected_y_location = -3
 
-    def test_move(self, move_in_x=1, move_in_y=1):
-        self._move_in_x
-        self._move_in_y
-        if self._current_health < self._max_health:
-            self._current_health += 1
+        # Act
+        actual_y_location=my_ship._move_in_y(move_in_y)
+
+        # Assert
+        self.assertEqual(expected_y_location, actual_y_location)
+
+    def test_move(self, move_in_x, move_in_y):
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        my_ship._current_health=10
+        move_in_x = 3
+        move_in_y = -3
+        expected_x_location = 3
+        expected_y_location = -3
+        expected_current_health = 11
+
+        # Act
+        my_ship._move(move_in_x, move_in_y)
+        actual_x_location = my_ship.get_x()
+        actual_y_location = my_ship.get_y()
+        actual_current_health = my_ship.get_current_health()
+
+        # Assert
+        self.assertEqual(expected_x_location, actual_x_location)
+        self.assertEqual(expected_y_location, actual_y_location)
+        self.assertEqual(expected_current_health, actual_current_health)
 
     def test_change_alignment_us_to_them(self):
     def test_change_alignment_them_to_us(self):

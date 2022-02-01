@@ -50,7 +50,7 @@ class Ship:
         return self._current_health
 
     def status(self):
-        return "{}\n type:{}\n health:{}\n location:({},{})".format(self.name, \
+        return "{}\ntype:{}\nhealth:{}\nlocation:({},{})".format(self.name, \
         type(self),self._current_health, self._x_location, self._y_location)
 
 
@@ -106,7 +106,6 @@ class Battleship(Ship):
         print("torpedoes:" + str(self.get_torpedoes()))
 
 
-
 class Cruiser(Ship):
 
     def __init__(self, name, x, y, alignment,max_health, range, attack_power, torpedoes):
@@ -148,4 +147,3 @@ class Repair(Cruiser):
     def _attack(self, target):
         if self._alignment == target._alignment:
             target._current_health = target._max_health
-
