@@ -220,18 +220,55 @@ class TestShip(TestCase):
         self.assertEqual(expected_current_health, actual_current_health)
 
     def test_change_alignment_us_to_them(self):
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=1, max_health=20, range=100, attack_power=10)
+        expected_result = 2
+
+        # Act
+        my_ship._change_alignment()
+        actual_result = my_ship.get_alignment()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
+
     def test_change_alignment_them_to_us(self):
-        if self._alignment == Alignment.us:
-            self._alignment = Alignment.them
-        elif self._alignment == Alignment.them:
-            self._alignment = Alignment.us
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10)
+        expected_result = 1
+
+        # Act
+        my_ship._change_alignment()
+        actual_result = my_ship.get_alignment()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_assess_damage(self, amount):
-        self._current_health -= amount
-        if self._current_health < 0:
-            self._current_health = 0
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10)
+        amount = 5
+        expected_result = 15
+
+        # Act
+        my_ship._assess_damage(amount)
+        actual_result = my_ship.get_current_health()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
     def test_assess_damage_health_low(self, amount):
+        # Arrange
+        my_ship = Ship(name="my ship", x=0, y=0, alignment=2, max_health=20, range=100, attack_power=10)
+        my_ship._current_health = 3
+        amount = 5
+        expected_result = 0
+
+        # Act
+        my_ship._assess_damage(amount)
+        actual_result = my_ship.get_current_health()
+
+        # Assert
+        self.assertEqual(expected_result, actual_result)
 
 class TestBattleship(TestCase):
     def test_battleship_get_torpedoes(self):
