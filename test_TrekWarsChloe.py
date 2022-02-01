@@ -32,7 +32,7 @@ class TestAlignment(TestCase):
 
     def test_Alignment_chaotic(self):
         # Arrange
-        at3 = Alighment.chaotic
+        at3 = Alignment.chaotic
         expected_result = 3
 
         # Act
