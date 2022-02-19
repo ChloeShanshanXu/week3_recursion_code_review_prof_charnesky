@@ -26,7 +26,7 @@ class NQueens:
             print(self)
         else:
             self._number_of_steps +=1
-            print(self)
+            print(self, "start step")
             for row_index in range(self. _total_queens):
                 if not self._is_solved() and self._can_place_queen(row_index):
                     self._board[row_index][self._current_number_of_queens] = "Q"
@@ -35,8 +35,7 @@ class NQueens:
                     if not self._is_solved():
                         self._current_number_of_queens -=1
                         self._board[row_index][self._current_number_of_queens] =" "
-                        print("cancel last step")
-                        print(self)
+                        print(self, "cancel last step")
 
 
     def _is_row_open(self, row_index):
